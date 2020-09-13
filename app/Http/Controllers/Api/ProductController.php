@@ -9,6 +9,10 @@ use Spatie\QueryBuilder\QueryBuilder;
 
 class ProductController extends Controller
 {
+    public function __construct() {
+        $this->middleware('privileged:control-product')->only(['add', 'update', 'delete']);
+    }
+
     public function index(Request $request)
     {
         $result = QueryBuilder::for(Product::class)->allowedFilters(['name', 'color', 'weight', 'price'])->get();

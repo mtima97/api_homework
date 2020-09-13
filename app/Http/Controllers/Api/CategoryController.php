@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+    public function __construct() {
+        $this->middleware('privileged:control-category')->only(['add', 'update', 'delete']);
+    }
+
     public function index()
     {
         $categories = Category::all();
