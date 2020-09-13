@@ -25,4 +25,4 @@ php artisan db:seed
 
 ## Схема обращения к АПИ
 
-[Contribution guidelines for this project](./api_routes.jpg)
+![alt text](https://github.com/mtima97/api_homework/blob/master/api_routes.jpg?raw=true)
