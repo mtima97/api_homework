@@ -16,16 +16,10 @@ class ProductSeeder extends Seeder
         $categories = factory(Category::class, 10)->create();
 
         factory(Product::class, 100)->create()->each(function ($product) use ($categories) {
-            $randomNum = mt_rand(1, $categories->count() - 1);
+            $randomNum = mt_rand(1, $categories->count());
             $categoriesToAttach = $categories->take($randomNum);
 
-            try {
-                $product->categories()->attach($categoriesToAttach->pluck('id')->all());
-            } catch (\Throwable $th) {
-                info($th->getMessage());
-                info(print_r($categoriesToAttach->pluck('id')->all(), true));
-                info($product->id);
-            }
+            $product->categories()->attach($categoriesToAttach->pluck('id')->all());
         });
     }
 }
