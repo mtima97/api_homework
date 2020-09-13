@@ -19,3 +19,15 @@ Route::group([
     Route::post('/{category}/update', 'CategoryController@update')->name('update');
     Route::post('/{category}/delete', 'CategoryController@delete')->name('delete');
 });
+
+Route::group([
+    'prefix' => 'products',
+    'namespace' => 'Api',
+    'as' => 'products.',
+    'middleware' => 'auth:api'
+], function () {
+    Route::get('/', 'ProductController@index')->name('all');
+    Route::post('/', 'ProductController@add')->name('add');
+    Route::post('/{product}/update', 'ProductController@update')->name('update');
+    Route::post('/{product}/delete', 'ProductController@delete')->name('delete');
+});
